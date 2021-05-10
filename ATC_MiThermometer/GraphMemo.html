@@ -1,147 +1,217 @@
 <!DOCTYPE html>
 <html>
-  <head>
-<style type="text/css">
-/**
- * Default styles for the dygraphs charting library.
- */
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <style type="text/css">
+            /**
+            * Default styles for the dygraphs charting library.
+            */
 
-.dygraph-legend {
-  position: relative;
-  font-size: 12px;
-  z-index: 10;
-  width: 250px;  /* labelsDivWidth */
-  /*
-  dygraphs determines these based on the presence of chart labels.
-  It might make more sense to create a wrapper div around the chart proper.
-  top: 0px;
-  right: 2px;
-  */
-  background: white;
-  line-height: normal;
-  text-align: center;
-  overflow: hidden;
-}
+            .dygraph-legend {
+            position: relative;
+            font-size: 12px;
+            z-index: 10;
+            width: 250px;  /* labelsDivWidth */
+            /*
+            dygraphs determines these based on the presence of chart labels.
+            It might make more sense to create a wrapper div around the chart proper.
+            top: 0px;
+            right: 2px;
+            */
+            background: white;
+            line-height: normal;
+            text-align: center;
+            overflow: hidden;
+            }
 
-/* styles for a solid line in the legend */
-.dygraph-legend-line {
-  display: inline-block;
-  position: relative;
-  bottom: .5ex;
-  padding-left: 1em;
-  height: 1px;
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  /* border-bottom-color is set based on the series color */
-}
+            /* styles for a solid line in the legend */
+            .dygraph-legend-line {
+            display: inline-block;
+            position: relative;
+            bottom: .5ex;
+            padding-left: 1em;
+            height: 1px;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            /* border-bottom-color is set based on the series color */
+            }
 
-/* styles for a dashed line in the legend, e.g. when strokePattern is set */
-.dygraph-legend-dash {
-  display: inline-block;
-  position: relative;
-  bottom: .5ex;
-  height: 1px;
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  /* border-bottom-color is set based on the series color */
-  /* margin-right is set based on the stroke pattern */
-  /* padding-left is set based on the stroke pattern */
-}
+            /* styles for a dashed line in the legend, e.g. when strokePattern is set */
+            .dygraph-legend-dash {
+            display: inline-block;
+            position: relative;
+            bottom: .5ex;
+            height: 1px;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            /* border-bottom-color is set based on the series color */
+            /* margin-right is set based on the stroke pattern */
+            /* padding-left is set based on the stroke pattern */
+            }
 
-.dygraph-roller {
-  position: absolute;
-  z-index: 10;
-}
+            .dygraph-roller {
+            position: absolute;
+            z-index: 10;
+            }
 
-/* This class is shared by all annotations, including those with icons */
-.dygraph-annotation {
-  position: absolute;
-  z-index: 10;
-  overflow: hidden;
-}
+            /* This class is shared by all annotations, including those with icons */
+            .dygraph-annotation {
+            position: absolute;
+            z-index: 10;
+            overflow: hidden;
+            }
 
-/* This class only applies to annotations without icons */
-/* Old class name: .dygraphDefaultAnnotation */
-.dygraph-default-annotation {
-  border: 1px solid black;
-  background-color: white;
-  text-align: center;
-}
+            /* This class only applies to annotations without icons */
+            /* Old class name: .dygraphDefaultAnnotation */
+            .dygraph-default-annotation {
+            border: 1px solid black;
+            background-color: white;
+            text-align: center;
+            }
 
-.dygraph-axis-label {
-  /* position: absolute; */
-  /* font-size: 14px; */
-  z-index: 10;
-  line-height: normal;
-  overflow: hidden;
-  color: black;  /* replaces old axisLabelColor option */
-}
+            .dygraph-axis-label {
+            /* position: absolute; */
+            /* font-size: 14px; */
+            z-index: 10;
+            line-height: normal;
+            overflow: hidden;
+            color: black;  /* replaces old axisLabelColor option */
+            }
 
-.dygraph-axis-label-x {
-}
+            .dygraph-axis-label-x {
+            }
 
-.dygraph-axis-label-y {
-  color: green; 
-}
+            .dygraph-axis-label-y {
+            color: green; 
+            }
 
-.dygraph-axis-label-y2 {
-  color: blue; 
-}
+            .dygraph-axis-label-y2 {
+            color: blue; 
+            }
 
-.dygraph-title {
-  font-weight: bold;
-  z-index: 10;
-  text-align: center;
-  /* font-size: based on titleHeight option */
-}
+            .dygraph-title {
+            font-weight: bold;
+            z-index: 10;
+            text-align: center;
+            /* font-size: based on titleHeight option */
+            }
 
-.dygraph-xlabel {
-  text-align: center;
-  /* font-size: based on xLabelHeight option */
-}
+            .dygraph-xlabel {
+            text-align: center;
+            /* font-size: based on xLabelHeight option */
+            }
 
-/* For y-axis label */
-.dygraph-label-rotate-left {
-  text-align: center;
-  /* See http://caniuse.com/#feat=transforms2d */
-  transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-}
+            /* For y-axis label */
+            .dygraph-label-rotate-left {
+            text-align: center;
+            /* See http://caniuse.com/#feat=transforms2d */
+            transform: rotate(90deg);
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            }
 
-/* For y2-axis label */
-.dygraph-label-rotate-right {
-  text-align: center;
-  /* See http://caniuse.com/#feat=transforms2d */
-  transform: rotate(-90deg);
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-}
-</style>
-  <title>Memo Temperature, Humidity and Battery voltage</title>
-  </head>
-  <body>
-	<div style="height: auto; width: auto; text-align: center;">
-	<div id="div_v"	style="height:400px;"></div>
-		<input type="button" id="butConnect" value="Connect">
-		<input type="button" id="butSave" value="Save data.csv">
-		Set device time<input type="checkbox" id="setDevTime" checked>
-		Hide old dates<input type="checkbox" id="hideLoDate" checked>
-		Vbat<input type="checkbox" id="thvbat"><br>
-		<span id='info'>?</span>
-	<div id='labdiv' style=></div>
-	</div>
-  </body>
+            /* For y2-axis label */
+            .dygraph-label-rotate-right {
+            text-align: center;
+            /* See http://caniuse.com/#feat=transforms2d */
+            transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            }
+        </style>
+        <title>Memo Temperature, Humidity and Battery voltage</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <div class="w3-bar w3-black">
+            <button id="butConnect" class="w3-bar-item w3-button">Connect</button>
+            <label class="w3-bar-item w3-button" for="setDevTime">Set device time <input type="checkbox" id="setDevTime" checked="checked"></label>
+            <label class="w3-bar-item w3-button" for="hideLoDate">Hide old dates <input type="checkbox" id="hideLoDate" checked="checked"></label>
+            <label class="w3-bar-item w3-button" for="thvbat">Vbat <input class="" type="checkbox" id="thvbat"></label>
+            <div class="w3-bar-item w3-button" onclick="document.getElementById('logmodal').style.display='block'">Status: <span id='info'>?</span></div>
+
+            <button id="butSave" class="w3-bar-item w3-button w3-right w3-green">Save data.csv</button>
+        </div>
+
+        <div style="height: auto; width: auto; text-align: center;">
+            <div id="div_v"	style="height:400px;">
+            <canvas id="myChart"></canvas>
+            <script>
+                var ctx = document.getElementById('myChart');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                        datasets: [{
+                            label: '# of Votes',
+                            data: [12, 19, 3, 5, 2, 3],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+                </script>
+            </div>
+
+            <div id='labdiv' style=></div>
+        </div>
+
+        <div id="logmodal" class="w3-modal">
+            <div class="w3-modal-content w3-animate-top w3-card-4">
+              <header class="w3-container w3-black"> 
+                <span onclick="document.getElementById('logmodal').style.display='none'" class="w3-button w3-large w3-red w3-display-topright">×</span>
+                <h2>Verbose Log</h2>
+              </header>
+              <div class="w3-container">
+                <textarea id="logstext" placeholder="No logs yet." class="w3-input" readonly style="overflow-y: scroll; resize:none; height:50vh;"></textarea>
+              </div>
+              <footer class="w3-container w3-black w3-display-container">
+                <p><label for="logautoscroll">Autoscroll <input type="checkbox" id="logautoscroll" checked="checked"></label><span onclick="document.getElementById('logmodal').style.display='none'" class="w3-button w3-display-right">Close</span></p>
+              </footer>
+            </div>
+          </div>
+    </body>
 <script type="text/javascript">
 var $ = function(id) {
 	return document.getElementById(id);
 }
-// Вывод в терминал
-function log(data) {$('info').innerHTML=data} // console.log(data);
+// Output to terminal ("Вывод в терминал")
+function log(data) {
+    $('info').innerHTML=data
+    $('logstext').innerHTML+=data+"\n"
+    // optional auto scroll option
+    if(($('logautoscroll').checked)==true) {
+        $('logstext').scrollTop = $('logstext').scrollHeight;
+    }
+} // console.log(data);
 var devcnn = 0;
 function ShowConnect() {
 	if(devcnn==0) $("butConnect").value = "Connect"
@@ -154,7 +224,7 @@ $("butConnect").onclick =  function() {
 	else {$("butConnect").value = "Connect..."; connect();};
 }
 var localOffset = (new Date()).getTimezoneOffset() * 60000;
-// Буфер входящих данных
+// Incoming data buffer ("Буфер входящих данных")
 var datau = [];
 var memo = [];
 var gu;
@@ -295,9 +365,9 @@ function show_graph() {
 $('hideLoDate').onchange = function() {show_graph();};
 $('thvbat').onchange = function() {show_graph();};
 //--BLE---------------------------------------
-// Кэш объекта выбранного устройства
+// The object cache of the selected device ("Кэш объекта выбранного устройства")
 let deviceCache = null;
-// Кэш объекта характеристики
+// Cache object characteristics ("Кэш объекта характеристики")
 var characteristicVTH = null;
 function DevConnected() {
 		devcnn = 1;
