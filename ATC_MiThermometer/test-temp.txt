@@ -1,0 +1,47 @@
+var data1 = {
+  labels: labels,
+  datasets: [
+    {
+      label: 'Temperature',
+      data: temps,
+      borderColor: CHART_COLORS.red,
+      yAxisID: 'y'
+    },
+    {
+      label: 'Humidity',
+      data: humids,
+      borderColor: CHART_COLORS.blue,
+      yAxisID: 'y1'
+    }
+  ]
+};
+
+var ctx = document.getElementById('myChart')
+myChart.destroy()
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: data1,
+    options: {
+        responsive: true,
+        interaction: {
+            mode: 'index',
+            intersect: false,
+        },
+        stacked: false,
+        scales: {
+            y: {
+                type: 'linear',
+                display: true,
+                position: 'left',
+            },
+            y1: {
+                type: 'linear',
+                display: true,
+                position: 'right',
+                grid: {
+                    drawOnChartArea: false, // only want the grid lines for one axis to show up
+                }
+            }
+        }
+    }
+});
