@@ -396,8 +396,8 @@
 
         <div style="height: auto; width: auto; text-align: center;" id="content">
 			<div class="w3-bar w3-light-grey w3-center" style="background-color:#1f1f1f" id="navbar2">
-				<label class="w3-bar-item w3-button w3-mobile" for="graphth" style="width:33%">Graph (C&deg;/H%) <input class="" type="radio" id="graphth" name="displaymode" value="graphth" checked></label>
-				<label class="w3-bar-item w3-button w3-mobile" for="tableth" style="width:33%">Table (C&deg;/H%) <input class="" type="radio" id="tableth" name="displaymode" value="tableth"></label>
+				<label class="w3-bar-item w3-button w3-mobile" for="graphth" style="width:33%">Graph (&deg;C/H%) <input class="" type="radio" id="graphth" name="displaymode" value="graphth" checked></label>
+				<label class="w3-bar-item w3-button w3-mobile" for="tableth" style="width:33%">Table (&deg;C/H%) <input class="" type="radio" id="tableth" name="displaymode" value="tableth"></label>
 				<label class="w3-bar-item w3-button w3-mobile" for="thvbat" style="width:33%">Graph Battery Voltage <input class="" type="radio" id="thvbat" name="displaymode" value="thvbat"></label>
 			</div>
             <div id="div_v"	style="height:400px;" class="w3-container">
@@ -471,7 +471,7 @@ function ShowGrfTH() {
 			showRoller: true,
 			rollPeriod: 0,
 			xlabel: 'Date',
-			ylabel: 'Temperature (C&deg;)',
+			ylabel: 'Temperature (&deg;C)',
 			y2label: 'Humidity (%)',
 			colors: ['green', 'blue'],
 			series : { 'H(%)': { axis: 'y2' } },
@@ -602,7 +602,7 @@ function show_table() {
 			$("div_v").innerHTML = `<table class="w3-table-all w3-margin-top" id="myTable">
 									<tr>
 									<th>Time</th>
-									<th>Temperature (C&deg;)</th>
+									<th>Temperature (&deg;C)</th>
 									<th>Humidity (%)</th>
 									<th>Battery Voltage (V)</th>
 									</tr>
