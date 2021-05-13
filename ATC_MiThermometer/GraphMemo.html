@@ -368,10 +368,6 @@
 			var $ = function(id) {
 				return document.getElementById(id);
 			}
-			async function saveThermodataToIDB(data) {
-				// Insert test data to database
-				await db.put('thermologs', data, 'test'); db.put()
-			}
 
 			let swURL = 'service-worker.js';
 			// Register the service worker
@@ -394,9 +390,15 @@
 						db.createObjectStore('thermologs');
 					},
 				});
+				// Insert test data to database
+				await db.put('thermologs', 'test 123', 'test');
 				
+				// load from database, pretty useless so far
+				alert(await db.get('thermologs', 'test'));
 				
 			});
+			
+
 			</script>
     </head>
     <body>
@@ -411,7 +413,7 @@
 			</div>
             <button id="butSave" class="w3-bar-item w3-button w3-green w3-right w3-mobile">Save data.csv</button>
 			<button id="dbtest" class="w3-bar-item w3-button w3-green w3-right w3-mobile" onclick="saveThermodataToIDB('HELL O WORLD')">Save to indexedDB 💾</button>
-			<button id="dbtest" class="w3-bar-item w3-button w3-green w3-right w3-mobile" onclick="alert((await db.get('settings', 'content')) || 'Fehler 😑');">Load from indexedDB 🔍</button>
+			<button id="dbtest" class="w3-bar-item w3-button w3-green w3-right w3-mobile">Load from indexedDB 🔍</button>
 
 			
 			
