@@ -362,7 +362,17 @@
 			.w3-border-pale-yellow,.w3-hover-border-pale-yellow:hover{border-color:#ffffcc!important}.w3-border-pale-blue,.w3-hover-border-pale-blue:hover{border-color:#e7ffff!important}
         </style>
         <title>Temperature, Humidity and Battery voltage (Memory)</title>
+		<script src="index-min.js"></script> <!-- index-min.js from idb: https://github.com/jakearchibald/idb#readme -->
 		<script>
+			// easier call for document.getElementById
+			var $ = function(id) {
+				return document.getElementById(id);
+			}
+			async function saveThermodataToIDB(data) {
+				// Insert test data to database
+				await db.put('thermologs', data, 'test'); db.put()
+			}
+
 			let swURL = 'service-worker.js';
 			// Register the service worker
 			if ('serviceWorker' in navigator) {
@@ -377,6 +387,16 @@
 				}
 			  });
 			}
+			window.addEventListener('DOMContentLoaded', async () => {
+				// Set up database with idb
+				const db = await idb.openDB('thermodata', 1, {
+					upgrade(db) {
+						db.createObjectStore('thermologs');
+					},
+				});
+				
+				
+			});
 			</script>
     </head>
     <body>
@@ -390,6 +410,11 @@
 				</div>
 			</div>
             <button id="butSave" class="w3-bar-item w3-button w3-green w3-right w3-mobile">Save data.csv</button>
+			<button id="dbtest" class="w3-bar-item w3-button w3-green w3-right w3-mobile" onclick="saveThermodataToIDB('HELL O WORLD')">Save to indexedDB 💾</button>
+			<button id="dbtest" class="w3-bar-item w3-button w3-green w3-right w3-mobile" onclick="alert((await db.get('settings', 'content')) || 'Fehler 😑');">Load from indexedDB 🔍</button>
+
+			
+			
         </div>
 
 		
@@ -428,9 +453,6 @@
 		  </div>
     </body>
 <script type="text/javascript">
-var $ = function(id) {
-	return document.getElementById(id);
-}
 // Resize Canvas, so it fits to screen
 function resizeCanvas() {
 	$('div_v').style.height = (window.innerHeight-($('navbar1').offsetHeight)-($('navbar2').offsetHeight)-($('statusbarfooter').offsetHeight)-($('labdiv').offsetHeight)) + 'px';
