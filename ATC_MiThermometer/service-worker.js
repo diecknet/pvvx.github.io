@@ -1,7 +1,7 @@
  // Choose a cache name
 const cacheName = 'thermometer-pwa';
 // List the files to precache
-const precacheResources = ['GraphMemo.html','TelinkMiFlasher.html'];
+const precacheResources = ['GraphMemo.html','TelinkMiFlasher.html','index-min.js'];
 
 // When the service worker is installing, open the cache and add the precache resources to it
 self.addEventListener('install', (event) => {
