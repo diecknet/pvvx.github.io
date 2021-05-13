@@ -361,7 +361,23 @@
 			.w3-border-pale-red,.w3-hover-border-pale-red:hover{border-color:#ffe7e7!important}.w3-border-pale-green,.w3-hover-border-pale-green:hover{border-color:#e7ffe7!important}
 			.w3-border-pale-yellow,.w3-hover-border-pale-yellow:hover{border-color:#ffffcc!important}.w3-border-pale-blue,.w3-hover-border-pale-blue:hover{border-color:#e7ffff!important}
         </style>
-        <title>Memo Temperature, Humidity and Battery voltage</title>
+        <title>Temperature, Humidity and Battery voltage (Memory)</title>
+		<script>
+			let swURL = 'service-worker.js';
+			// Register the service worker
+			if ('serviceWorker' in navigator) {
+			  // Wait for the 'load' event to not block other work
+			  window.addEventListener('load', async () => {
+				// Try to register the service worker.
+				try {
+				  const reg = await navigator.serviceWorker.register(swURL);
+				  console.log('Service worker registered! 😎', reg);
+				} catch (err) {
+				  console.log('😥 Service worker registration failed: ', err);
+				}
+			  });
+			}
+			</script>
     </head>
     <body>
         <div class="w3-bar w3-black" id="navbar1">
