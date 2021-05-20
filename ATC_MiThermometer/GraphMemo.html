@@ -370,7 +370,7 @@
 			}
 			// init idb object globally
 			var db;
-			// this is our own version number fot the object store
+			// this is our own version number for the object store
 			let db_version = 3;
 			// init array to store data from idb
 			let dataDB = new Array();
@@ -386,6 +386,28 @@
 					device: 'ATC1337'
 				}));
 			}
+
+			async function saveThermodataToIDB(datau) {
+				/* insert real data to database */
+				log(datau);
+				datau.forEach(async function(thisValue){
+					await db.add('thermologs_v'+db_version,{
+						date: thisValue[0],
+						temp: thisValue[1],
+						humid: thisValue[2],
+						voltage: thisValue[3],
+						device: device.name
+					});
+				});
+			}
+
+			async function loadThermodataFromIDB() {
+				// load from database
+				dataDB = await db.getAllFromIndex('thermologs_v'+db_version, 'date');
+				log(dataDB);
+				alert(dataDB);
+			}
+
 			function getRandomIntInclusive(min, max) {
 				min = Math.ceil(min);
 				max = Math.floor(max);
@@ -424,8 +446,7 @@
 					},
 				});
 				
-				// load from database
-				dataDB = await db.getAllFromIndex('thermologs_v'+db_version, 'date');
+				
 				
 				//console.log(await db.getAllFromIndex('thermologs'));
 				
@@ -445,9 +466,9 @@
 				</div>
 			</div>
             <button id="butSave" class="w3-bar-item w3-button w3-green w3-right w3-mobile">Save data.csv</button>
-			<button id="dbtest" class="w3-bar-item w3-button w3-green w3-right w3-mobile" onclick="saveThermodataToIDB('HELL O WORLD')">Save to indexedDB 💾</button>
-			<button id="dbtest" class="w3-bar-item w3-button w3-green w3-right w3-mobile">Load from indexedDB 🔍</button>
-
+			<button id="savedbtest" class="w3-bar-item w3-button w3-green w3-right w3-mobile" onclick="saveThermodataToIDB(datau);">Save to indexedDB 💾</button>
+			<button id="loaddbtest" class="w3-bar-item w3-button w3-green w3-right w3-mobile" onclick="loadThermodataFromIDB();">Load from indexedDB 🔍</button>
+			<button id="showbtest" class="w3-bar-item w3-button w3-green w3-right w3-mobile" onclick="log(datau);">TEST SHOW 🅱</button>
 			
 			
         </div>
